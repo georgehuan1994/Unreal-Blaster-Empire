@@ -4,6 +4,7 @@
 #include "CombatComponent.h"
 #include "Blaster/Character/BlasterCharacter.h"
 #include "Blaster/Weapon/Weapon.h"
+#include "Components/SphereComponent.h"
 #include "Engine/SkeletalMeshSocket.h"
 
 UCombatComponent::UCombatComponent()
@@ -27,7 +28,7 @@ void UCombatComponent::EquipWeapon(AWeapon* WeaponToEquip)
 	}
 	
 	EquippedWeapon->SetOwner(Character);
-	EquippedWeapon->ShowPickupWidget(false);
+	
 
 	// RifleM4C
 	EquippedWeapon->SetActorRelativeRotation(FRotator(0,90,0));

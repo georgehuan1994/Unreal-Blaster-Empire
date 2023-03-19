@@ -51,6 +51,9 @@ class BLASTER_API ABlasterCharacter : public ACharacter
 	UPROPERTY(VisibleAnywhere)
 	class UCombatComponent* Combat;
 
+	UFUNCTION(Server, Reliable)
+	void ServerEquip();
+
 public:
 	ABlasterCharacter();
 	virtual void Tick(float DeltaTime) override;
