@@ -45,6 +45,7 @@ ABlasterCharacter::ABlasterCharacter()
 	// Unequipped
 	bUseControllerRotationYaw = false;
 	GetCharacterMovement()->bOrientRotationToMovement = true; // Character moves in the direction of input...
+	GetCharacterMovement()->NavAgentProps.bCanCrouch = true;
 	// GetCharacterMovement()->RotationRate = FRotator(0.0f, 500.0f, 0.0f); // ...at this rotation rate
 	
 	OverheadWidget = CreateDefaultSubobject<UWidgetComponent>(TEXT("OverheadWidget"));
@@ -152,6 +153,9 @@ void ABlasterCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 
 		//Equip
 		EnhancedInputComponent->BindAction(EquipAction, ETriggerEvent::Started, this, &ABlasterCharacter::Equip);
+
+		//Crouching
+		EnhancedInputComponent->BindAction(CrouchingAction, ETriggerEvent::Started, this, &ABlasterCharacter::Crouching);
 	}
 }
 
@@ -203,6 +207,18 @@ void ABlasterCharacter::Equip()
 		{
 			ServerEquip();
 		}
+	}
+}
+
+void ABlasterCharacter::Crouching()
+{
+	if (bIsCrouched)
+	{
+		UnCrouch();
+	}
+	else
+	{
+		Crouch();
 	}
 }
 
