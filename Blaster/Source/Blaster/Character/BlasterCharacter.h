@@ -62,6 +62,7 @@ public:
 	virtual void PostInitializeComponents() override;
 
 	void SetOverlappingWeapon(AWeapon* Weapon);
+	bool IsWeaponEquipped();
 
 protected:
 	virtual void BeginPlay() override;
