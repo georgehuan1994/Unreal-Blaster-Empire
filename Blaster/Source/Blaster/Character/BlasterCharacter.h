@@ -47,6 +47,10 @@ class BLASTER_API ABlasterCharacter : public ACharacter
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	class UInputAction* CrouchingAction;
 
+	/** Aiming Input Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	class UInputAction* AimingAction;
+
 	UPROPERTY(ReplicatedUsing = OnRep_OverlappingWeapon)
 	class AWeapon* OverlappingWeapon;
 
@@ -68,6 +72,7 @@ public:
 
 	void SetOverlappingWeapon(AWeapon* Weapon);
 	bool IsWeaponEquipped();
+	bool IsAiming();
 
 protected:
 	virtual void BeginPlay() override;
@@ -83,4 +88,8 @@ protected:
 
 	/** Called for crouching input */
 	void Crouching();
+
+	/** Called for crouching input */
+	void Aiming();
+	void StopAiming();
 };

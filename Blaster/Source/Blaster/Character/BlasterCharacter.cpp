@@ -101,6 +101,11 @@ bool ABlasterCharacter::IsWeaponEquipped()
 	return (Combat && Combat->EquippedWeapon);
 }
 
+bool ABlasterCharacter::IsAiming()
+{
+	return (Combat && Combat->bAiming);
+}
+
 void ABlasterCharacter::PostInitializeComponents()
 {
 	Super::PostInitializeComponents();
@@ -156,6 +161,10 @@ void ABlasterCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 
 		//Crouching
 		EnhancedInputComponent->BindAction(CrouchingAction, ETriggerEvent::Started, this, &ABlasterCharacter::Crouching);
+
+		//Aiming
+		EnhancedInputComponent->BindAction(AimingAction, ETriggerEvent::Triggered, this, &ABlasterCharacter::Aiming);
+		EnhancedInputComponent->BindAction(AimingAction, ETriggerEvent::Completed, this, &ABlasterCharacter::StopAiming);
 	}
 }
 
@@ -219,6 +228,22 @@ void ABlasterCharacter::Crouching()
 	else
 	{
 		Crouch();
+	}
+}
+
+void ABlasterCharacter::Aiming()
+{
+	if (Combat)
+	{
+		Combat->SetAiming(true);
+	}
+}
+
+void ABlasterCharacter::StopAiming()
+{
+	if (Combat)
+	{
+		Combat->SetAiming(false);
 	}
 }
 
