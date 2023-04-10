@@ -63,6 +63,10 @@ class BLASTER_API ABlasterCharacter : public ACharacter
 	UFUNCTION(Server, Reliable)
 	void ServerEquip();
 
+	float AO_Yaw;
+	float AO_Pitch;
+	FRotator StartingAimRotation;
+
 public:
 	ABlasterCharacter();
 	virtual void Tick(float DeltaTime) override;
@@ -73,6 +77,9 @@ public:
 	void SetOverlappingWeapon(AWeapon* Weapon);
 	bool IsWeaponEquipped();
 	bool IsAiming();
+
+	FORCEINLINE float GetAOYaw() const { return AO_Yaw; }
+	FORCEINLINE float GetAOPitch() const { return AO_Pitch; }
 
 protected:
 	virtual void BeginPlay() override;
@@ -92,4 +99,6 @@ protected:
 	/** Called for crouching input */
 	void Aiming();
 	void StopAiming();
+
+	void AimOffset(float DeltaTime);
 };
