@@ -32,6 +32,8 @@ class BLASTER_API UBlasterAnimInstance : public UAnimInstance
 	UPROPERTY(BlueprintReadOnly, Category = Character, meta = (AllowPrivateAccess = "true"))
 	bool bWeaponEquipped;
 
+	class AWeapon* EquippedWeapon;
+
 	UPROPERTY(BlueprintReadOnly, Category = Character, meta = (AllowPrivateAccess = "true"))
 	bool bIsCrouched;
 
@@ -53,6 +55,9 @@ class BLASTER_API UBlasterAnimInstance : public UAnimInstance
 
 	UPROPERTY(BlueprintReadOnly, Category = Character, meta = (AllowPrivateAccess = "true"))
 	float AO_Pitch;
+
+	UPROPERTY(BlueprintReadOnly, Category = Character, meta = (AllowPrivateAccess = "true"))
+	FTransform LeftHandTransform; // Left Hand IK Transform
 	
 public:
 	virtual void NativeInitializeAnimation() override;

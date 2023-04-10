@@ -81,6 +81,8 @@ public:
 	FORCEINLINE float GetAOYaw() const { return AO_Yaw; }
 	FORCEINLINE float GetAOPitch() const { return AO_Pitch; }
 
+	AWeapon* GetEquippedWeapon();
+
 protected:
 	virtual void BeginPlay() override;
 	

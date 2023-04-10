@@ -35,7 +35,8 @@ void UCombatComponent::EquipWeapon(AWeapon* WeaponToEquip)
 	
 
 	// RifleM4C
-	EquippedWeapon->SetActorRelativeRotation(FRotator(0,90,0));
+	EquippedWeapon->SetActorRelativeRotation(FRotator(0,90.f,0));
+	EquippedWeapon->SetActorRelativeLocation(FVector(-2.98f, 9.13f, 1));
 
 	// Server Only
 	Character->GetCharacterMovement()->bOrientRotationToMovement = false;
